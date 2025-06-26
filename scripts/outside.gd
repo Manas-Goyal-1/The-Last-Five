@@ -19,7 +19,7 @@ func _on_timer_timeout() -> void:
 	
 	#print(str(x) + ", " + str(y))
 	zombie.position = Vector2(x, y)
-	zombie.target = source
+	zombie.target = source.position
 	
-	get_node("zombies").add_child(zombie)
+	get_node("Zombies").add_child(zombie)
 	

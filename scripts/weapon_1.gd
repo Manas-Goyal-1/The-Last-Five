@@ -2,12 +2,19 @@ extends Area2D
 
 var health = 30
 
-func _process(delta: float) -> void:
-	# Spawn projectiles
-	pass
-
+var ProjectileScene = preload("res://scenes/projectile.tscn")
+@onready var zombies: Node = $"../Zombies"
 
 func take_damage(damage):
 	health -= damage
 	if health < 0:
 		health = 0
+
+
+func _on_timer_timeout() -> void:
+	var projectile = ProjectileScene.instantiate()
+	if zombies.get_child_count() == 0:
+		return
+	
+	projectile.target_pos = zombies.get_children()[randi_range(0, zombies.get_child_count()-1)].position
+	add_child(projectile)

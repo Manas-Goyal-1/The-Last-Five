@@ -2,18 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://bia26am5wiknn" path="res://scenes/player.tscn" id="1_p61qw"]
 [ext_resource type="Script" uid="uid://b46hp77qd8jhm" path="res://scripts/outside.gd" id="1_udpx5"]
-[ext_resource type="Texture2D" uid="uid://5om8aq7vkei5" path="res://assets/sprites/coin.png" id="3_8lkp2"]
+[ext_resource type="Texture2D" uid="uid://ddik8kauq6r2o" path="res://assets/sprites/fruit.png" id="3_udpx5"]
 [ext_resource type="PackedScene" uid="uid://cx04khn534qsj" path="res://scenes/weapon_1.tscn" id="4_7r1kg"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8lkp2"]
-atlas = ExtResource("3_8lkp2")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7r1kg"]
+atlas = ExtResource("3_udpx5")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lpxjy"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8lkp2")
+"texture": SubResource("AtlasTexture_7r1kg")
 }],
 "loop": true,
 "name": &"default",
@@ -37,9 +37,9 @@ unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_lpxjy")
 autoplay = "default"
 
-[node name="zombies" type="Node" parent="."]
+[node name="Zombies" type="Node" parent="."]
 
-[node name="weapon1" parent="." instance=ExtResource("4_7r1kg")]
+[node name="Weapon1" parent="." instance=ExtResource("4_7r1kg")]
 position = Vector2(9, 14)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

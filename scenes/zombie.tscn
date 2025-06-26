@@ -40,19 +40,20 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_httt1"]
-size = Vector2(11.5, 12)
+size = Vector2(12.375, 12)
 
 [node name="Zombie" type="Area2D" groups=["zombies"]]
 script = ExtResource("1_httt1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_pjjxt")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.25, 0)
+position = Vector2(-0.1875, 0)
 shape = SubResource("RectangleShape2D_httt1")
 
 [node name="PlayerAttackTimer" type="Timer" parent="."]
