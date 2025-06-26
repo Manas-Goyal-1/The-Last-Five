@@ -10,9 +10,8 @@ var health = MAX_HEALTH
 
 
 func _process(delta: float) -> void:
-
-	var direction = Vector2.ZERO
 	
+	var direction = Vector2.ZERO
 	if Input.is_action_pressed("right"):
 		direction.x += 1
 	if Input.is_action_pressed("left"):

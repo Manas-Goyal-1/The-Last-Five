@@ -39,10 +39,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xepks"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_httt1"]
 size = Vector2(11.5, 12)
 
-[node name="Zombie" type="Area2D"]
+[node name="Zombie" type="Area2D" groups=["zombies"]]
 script = ExtResource("1_httt1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -52,11 +52,17 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_xepks")
+position = Vector2(0.25, 0)
+shape = SubResource("RectangleShape2D_httt1")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="PlayerAttackTimer" type="Timer" parent="."]
 wait_time = 0.1
 
+[node name="WeaponAttackTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="PlayerAttackTimer" to="." method="_on_player_attack_timer_timeout"]
+[connection signal="timeout" from="WeaponAttackTimer" to="." method="_on_weapon_attack_timer_timeout"]
