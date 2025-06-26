@@ -40,6 +40,8 @@ autoplay = "default"
 [node name="Zombies" type="Node" parent="."]
 
 [node name="Weapon1" parent="." instance=ExtResource("4_7r1kg")]
-position = Vector2(9, 14)
+position = Vector2(83, 28)
+
+[node name="Projectiles" type="Node" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

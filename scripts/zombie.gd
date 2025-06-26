@@ -21,7 +21,6 @@ func _process(delta: float) -> void:
 	# velocity is built in
 	var velocity = direction.normalized() * SPEED
 	self.position += velocity * delta
-	queue_redraw()
 
 
 func take_damage(damage):
@@ -53,8 +52,3 @@ func _on_area_exited(area: Area2D) -> void:
 
 func _on_weapon_attack_timer_timeout() -> void:
 	weapon.take_damage(WEAPON_ATTACK)
-
-#func _draw():
-	#var color = Color(0, 1, 0)  # Green
-	#var radius = 2.0
-	#draw_circle(Vector2.ZERO, radius, color, true)  # Draw at the local origin

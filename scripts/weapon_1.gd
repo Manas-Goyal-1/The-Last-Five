@@ -16,5 +16,7 @@ func _on_timer_timeout() -> void:
 	if zombies.get_child_count() == 0:
 		return
 	
-	projectile.target_pos = zombies.get_children()[randi_range(0, zombies.get_child_count()-1)].position
-	add_child(projectile)
+	projectile.target = zombies.get_children()[randi_range(0, zombies.get_child_count()-1)].position
+	projectile.position = position
+	
+	get_node("../Projectiles").add_child(projectile)
