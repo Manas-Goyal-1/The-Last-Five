@@ -18,7 +18,9 @@ func _on_timer_timeout() -> void:
 	y += randf_range(-10, 50) * (int(y>0)*2-1)
 	
 	
-	print("%d, %d" % [x, y])
+	#print(str(x) + ", " + str(y))
 	zombie.position = Vector2(x, y)
 	zombie.target = source
-	add_child(zombie)
+	
+	get_node("zombies").add_child(zombie)
+	
