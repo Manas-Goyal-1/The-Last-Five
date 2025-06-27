@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvbdair2vutn0"]
+
+[ext_resource type="PackedScene" uid="uid://btck767c7bidv" path="res://scenes/outside.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://bto3uwsltsvkn" path="res://scenes/game_manager.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bieueg3gj7nt2" path="res://scenes/bunker.tscn" id="3_lnu2h"]
+
+[node name="Game" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_yqjtg")
+
+[node name="Outside" parent="." instance=ExtResource("1_uwrxv")]
+
+[node name="Bunker" parent="." instance=ExtResource("3_lnu2h")]

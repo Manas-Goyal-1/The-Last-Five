@@ -1,7 +1,7 @@
 extends Area2D
 
-const DAMAGE = 20
-const SPEED = 200
+const DAMAGE = 10
+const SPEED = 300
 var target: Vector2
 
 
