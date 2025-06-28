@@ -1,7 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://t2akl2w8ulfh"]
+[gd_scene load_steps=17 format=3 uid="uid://t2akl2w8ulfh"]
 
 [ext_resource type="Texture2D" uid="uid://ix1sbjah125k" path="res://assets/sprites/slime_green.png" id="1_1vlb3"]
 [ext_resource type="Script" uid="uid://d3xwh5lo4m6rm" path="res://scripts/zombie.gd" id="1_httt1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjjxt"]
+atlas = ExtResource("1_1vlb3")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pfmu"]
+atlas = ExtResource("1_1vlb3")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fthk"]
+atlas = ExtResource("1_1vlb3")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aetfh"]
+atlas = ExtResource("1_1vlb3")
+region = Rect2(72, 48, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_httt1"]
 atlas = ExtResource("1_1vlb3")
@@ -19,8 +35,41 @@ region = Rect2(48, 24, 24, 24)
 atlas = ExtResource("1_1vlb3")
 region = Rect2(72, 24, 24, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjlcg"]
+atlas = ExtResource("1_1vlb3")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iblsu"]
+atlas = ExtResource("1_1vlb3")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ida1p"]
+atlas = ExtResource("1_1vlb3")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6hpf"]
+atlas = ExtResource("1_1vlb3")
+region = Rect2(72, 0, 24, 24)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_pjjxt"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjjxt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pfmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fthk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aetfh")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_httt1")
@@ -35,8 +84,25 @@ animations = [{
 "texture": SubResource("AtlasTexture_ycv6i")
 }],
 "loop": true,
-"name": &"idle",
-"speed": 5.0
+"name": &"move",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjlcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iblsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ida1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6hpf")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 7.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_httt1"]
@@ -49,8 +115,8 @@ script = ExtResource("1_httt1")
 z_index = -1
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_pjjxt")
-animation = &"idle"
-autoplay = "idle"
+animation = &"hit"
+autoplay = "spawn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.1875, 0)
@@ -65,5 +131,6 @@ wait_time = 0.1
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="PlayerAttackTimer" to="." method="_on_player_attack_timer_timeout"]
 [connection signal="timeout" from="WeaponAttackTimer" to="." method="_on_weapon_attack_timer_timeout"]

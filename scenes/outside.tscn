@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://btck767c7bidv"]
+[gd_scene load_steps=6 format=3 uid="uid://btck767c7bidv"]
 
-[ext_resource type="PackedScene" uid="uid://bia26am5wiknn" path="res://scenes/player.tscn" id="1_p61qw"]
 [ext_resource type="Script" uid="uid://b46hp77qd8jhm" path="res://scripts/outside.gd" id="1_udpx5"]
 [ext_resource type="Texture2D" uid="uid://ddik8kauq6r2o" path="res://assets/sprites/fruit.png" id="3_udpx5"]
 [ext_resource type="PackedScene" uid="uid://cx04khn534qsj" path="res://scenes/weapon_1.tscn" id="4_7r1kg"]
@@ -24,13 +23,11 @@ animations = [{
 script = ExtResource("1_udpx5")
 
 [node name="ZombieSpawnerTimer" type="Timer" parent="."]
+wait_time = 1.5
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
-
-[node name="Player" parent="." instance=ExtResource("1_p61qw")]
-position = Vector2(36, -22)
 
 [node name="Source" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lpxjy")

@@ -1,3 +1,52 @@
-[gd_scene format=3 uid="uid://bieueg3gj7nt2"]
+[gd_scene load_steps=7 format=3 uid="uid://bieueg3gj7nt2"]
+
+[ext_resource type="Texture2D" uid="uid://dboldep3kdw74" path="res://assets/sprites/slime_purple.png" id="1_764y3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewk1p"]
+atlas = ExtResource("1_764y3")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyfgi"]
+atlas = ExtResource("1_764y3")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c24m"]
+atlas = ExtResource("1_764y3")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk1w7"]
+atlas = ExtResource("1_764y3")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tyiie"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewk1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyfgi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7c24m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk1w7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Bunker" type="Node2D"]
+
+[node name="NPCs" type="Node2D" parent="."]
+position = Vector2(0, 50)
+
+[node name="NPC1" type="AnimatedSprite2D" parent="NPCs"]
+sprite_frames = SubResource("SpriteFrames_tyiie")
+autoplay = "default"
+frame = 3
+frame_progress = 0.964065
+
+[node name="Background" type="Sprite2D" parent="."]

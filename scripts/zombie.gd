@@ -3,6 +3,8 @@ extends Area2D
 const SPEED = 20
 const MAX_HEALTH = 20
 var health = MAX_HEALTH
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
 var target
 
 # Player Damage stuff
@@ -15,18 +17,31 @@ const WEAPON_ATTACK = 2
 var weapon
 @onready var weapon_attack_timer: Timer = $WeaponAttackTimer
 
+
 # Momvement
 func _process(delta: float) -> void:
 	var direction = target - position
+	
+	if direction.x > 0:
+		animated_sprite.flip_h = false
+	else:
+		animated_sprite.flip_h = true
+	
 	# velocity is built in
 	var velocity = direction.normalized() * SPEED
 	self.position += velocity * delta
 
 
 func take_damage(damage):
+	animated_sprite.play("hit")
 	health -= damage
 	if health <= 0:
 		queue_free()
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	animated_sprite.play("move")
+
 
 # To damage the player
 func _on_body_entered(body: Node2D) -> void:
