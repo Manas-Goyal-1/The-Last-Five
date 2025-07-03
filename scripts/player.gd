@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const GRAVITY = 0.7
+const GRAVITY = 0.3
 const SPEED = 100
 const MAX_HEALTH = 100
 var health = MAX_HEALTH
@@ -48,7 +48,7 @@ func take_damage(damage):
 
 func to_bunker():
 	is_outside = false
-	position = Vector2.ZERO
+	position = Vector2(55, -30)
 	
 	scale = Vector2(0.8, 0.8)	# So the player looks similar in size in both scenes
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bieueg3gj7nt2"]
+[gd_scene load_steps=12 format=3 uid="uid://bieueg3gj7nt2"]
 
 [ext_resource type="Script" uid="uid://bfxh0vv3b28dm" path="res://scripts/bunker.gd" id="1_cyfgi"]
+[ext_resource type="PackedScene" uid="uid://c3r1xt8f2qnpd" path="res://scenes/worker.tscn" id="2_hqi4v"]
 [ext_resource type="Texture2D" uid="uid://cw52luvy2tv4x" path="res://assets/sprites/ground2.png" id="3_7c24m"]
 [ext_resource type="Texture2D" uid="uid://cbwpr4ivg2c7x" path="res://assets/sprites/Wood.png" id="3_tyiie"]
 [ext_resource type="Texture2D" uid="uid://csnmgi8y1vicj" path="res://assets/sprites/water.png" id="4_6gqei"]
@@ -22,15 +23,17 @@ script = ExtResource("1_cyfgi")
 
 [node name="Workers" type="Node2D" parent="."]
 
-[node name="Node2D" type="Node2D" parent="Workers"]
+[node name="Worker" parent="Workers" instance=ExtResource("2_hqi4v")]
+position = Vector2(-8.215, 25.825)
 
-[node name="Node2D4" type="Node2D" parent="Workers"]
+[node name="Worker2" parent="Workers" instance=ExtResource("2_hqi4v")]
+position = Vector2(-2.905, 25.825)
 
-[node name="Node2D5" type="Node2D" parent="Workers"]
+[node name="Worker3" parent="Workers" instance=ExtResource("2_hqi4v")]
+position = Vector2(0, 25.825)
 
-[node name="Node2D2" type="Node2D" parent="Workers"]
-
-[node name="Node2D3" type="Node2D" parent="Workers"]
+[node name="Worker4" parent="Workers" instance=ExtResource("2_hqi4v")]
+position = Vector2(6.985, 25.825)
 
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
@@ -41,13 +44,14 @@ limit_smoothed = true
 [node name="Workstations" type="Node2D" parent="."]
 
 [node name="Woodstation" parent="Workstations" instance=ExtResource("4_hk1w7")]
-position = Vector2(-8.16, 30.775)
+position = Vector2(-107.335, 21.955)
 
 [node name="Sprite2D" type="Sprite2D" parent="Workstations/Woodstation"]
 scale = Vector2(0.22, 0.22)
 texture = ExtResource("3_tyiie")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Workstations/Woodstation"]
+visible = false
 shape = SubResource("RectangleShape2D_6gqei")
 
 [node name="Waterstation" parent="Workstations" instance=ExtResource("4_hk1w7")]
@@ -59,10 +63,11 @@ resource_type = 2
 texture = ExtResource("4_6gqei")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Workstations/Waterstation"]
+visible = false
 shape = SubResource("CapsuleShape2D_6gqei")
 
 [node name="Moneystation" parent="Workstations" instance=ExtResource("4_hk1w7")]
-position = Vector2(100, 30)
+position = Vector2(100, 29.755)
 resource_type = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Workstations/Moneystation"]
@@ -70,16 +75,15 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_tyiie")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Workstations/Moneystation"]
+visible = false
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_tyiie")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(-1, 4)
 texture = ExtResource("6_hqi4v")
 
 [node name="Ground" type="StaticBody2D" parent="."]
-z_index = -1
 position = Vector2(0, -20)
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground"]
@@ -87,4 +91,5 @@ position = Vector2(0, 20)
 texture = ExtResource("3_7c24m")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
+visible = false
 polygon = PackedVector2Array(-135, 96, -135, -55, -125, -55, -125, 51, -120, 49, -118, 48, -116, 48, -112, 49, -93, 49, -85, 50, -78, 52, -69, 53, -58, 56, -38, 56, -31, 58, -11, 58, -9, 59, -6, 58, -1, 56, 19, 56, 26, 58, 33, 59, 36, 59, 42, 60, 52, 59, 60, 59, 64, 60, 72, 60, 73, 59, 85, 59, 87, 58, 91, 57, 107, 57, 114, 59, 118, 61, 124, 62, 125, 63, 125, -55, 132, -55, 132, 96)

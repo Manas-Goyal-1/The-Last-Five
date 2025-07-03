@@ -38,12 +38,16 @@ func _on_body_exited(body: Node2D) -> void:
 
 
 func _on_subtract_button_pressed() -> void:
-	game_manager.workers.append(workers.pop_back())
+	var worker = workers.pop_back()
+	game_manager.workers.append(worker)
+	worker.move_to(Vector2(0, 30))
 	_update()
 
 
 func _on_add_button_pressed() -> void:
-	workers.append(game_manager.workers.pop_back())
+	var worker = game_manager.workers.pop_back()
+	workers.append(worker)
+	worker.move_to(position)
 	_update()
 
 
