@@ -30,23 +30,30 @@ unique_name_in_owner = true
 layer = 5
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
-offset_left = 71.57
-offset_top = -68.0
-offset_right = 121.57
-offset_bottom = -2.0
-scale = Vector2(0.6, 0.6)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -140.0
+offset_top = 20.0
+offset_right = -19.0
+offset_bottom = 167.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_bottom = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
 columns = 2
 
 [node name="MoneyIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
@@ -57,8 +64,8 @@ expand_mode = 2
 [node name="MoneyLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_u5sy4")
-theme_override_font_sizes/font_size = 16
-text = "100"
+theme_override_font_sizes/font_size = 40
+text = "0"
 
 [node name="WoodIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2
@@ -68,8 +75,8 @@ expand_mode = 2
 [node name="WoodLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_u5sy4")
-theme_override_font_sizes/font_size = 16
-text = "100"
+theme_override_font_sizes/font_size = 40
+text = "0"
 
 [node name="WaterIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2
@@ -79,5 +86,5 @@ expand_mode = 2
 [node name="WaterLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_u5sy4")
-theme_override_font_sizes/font_size = 16
-text = "100"
+theme_override_font_sizes/font_size = 40
+text = "0"
