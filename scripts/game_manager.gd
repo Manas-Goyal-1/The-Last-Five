@@ -7,7 +7,7 @@ extends Node
 # Resources for inventory
 var wood = 0
 var money = 0
-var another_resource = 0
+var water = 0
 var workers
 
 ## To manage scenes
@@ -18,7 +18,6 @@ func _ready() -> void:
 	show_outside()
 	
 	workers = $"../Bunker/Workers".get_children()
-	print(workers)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("RightClick"):

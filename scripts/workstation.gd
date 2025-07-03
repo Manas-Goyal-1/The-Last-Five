@@ -1,7 +1,7 @@
 extends Area2D
 
 # Not quite sure how this works, but apparently it only lets the variable be these things
-enum ResourceTypes {WOOD, MONEY, ONE_MORE_THING}
+enum ResourceTypes {WOOD, MONEY, WATER}
 @export var resource_type: ResourceTypes
 @onready var game_manager = get_tree().get_current_scene().get_node("%GameManager")
 @onready var timer: Timer = $Timer
@@ -10,7 +10,7 @@ enum ResourceTypes {WOOD, MONEY, ONE_MORE_THING}
 @onready var subtract_button: Button = $Popup/Panel/VBoxContainer/HBoxContainer/SubtractButton
 @onready var num_workers_label: Label = $Popup/Panel/VBoxContainer/HBoxContainer/NumWorkersLabel
 @onready var add_button: Button = $Popup/Panel/VBoxContainer/HBoxContainer/AddButton
-
+const MAX_WORKERS = 3
 
 var workers = []
 var wait_time = 9
@@ -20,7 +20,7 @@ var resource_count = 0
 func _on_body_entered(body: Node2D) -> void:
 	# Control UI Thing
 	popup.visible = true
-	_reset_UI()
+	_update()
 	
 	# Collect resource
 	if resource_type == ResourceTypes.WOOD:
@@ -28,7 +28,8 @@ func _on_body_entered(body: Node2D) -> void:
 	elif resource_type == ResourceTypes.MONEY:
 		game_manager.money += resource_count
 	else:
-		game_manager.another_resource += resource_count
+		game_manager.water += resource_count
+	#print("Added " + str(resource_count) + " resource")
 	resource_count = 0
 
 
@@ -38,18 +39,19 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _on_subtract_button_pressed() -> void:
 	game_manager.workers.append(workers.pop_back())
-	_reset_UI()
+	_update()
 
 
 func _on_add_button_pressed() -> void:
 	workers.append(game_manager.workers.pop_back())
-	_reset_UI()
+	_update()
 
 
-func _reset_UI():
+func _update():
+	## Updating UI
 	num_workers_label.text = str(workers.size())
 	
-	if game_manager.workers.is_empty():
+	if game_manager.workers.is_empty() or workers.size() == MAX_WORKERS:
 		add_button.disabled = true
 	else:
 		add_button.disabled = false
@@ -59,13 +61,18 @@ func _reset_UI():
 	else:
 		subtract_button.disabled = false
 	
-	print(add_button.disabled, subtract_button.disabled)
+	## Updating Worker resource stuff
+	_reset_timer()
 
 func _on_timer_timeout() -> void:
 	resource_count += 1
-	if workers.size():	# If no workers, don't produce resource
-		start_timer()
+	#print("Timer Ended: " + str(resource_count))
+	_reset_timer()
 
-func start_timer():
-	timer.wait_time = wait_time - workers.size() * 2
-	timer.start()
+func _reset_timer():
+	if workers.size() != 0:
+		#print("Timer Started")
+		timer.wait_time = wait_time - workers.size() * 2
+		timer.start()
+	else:
+		timer.stop()
