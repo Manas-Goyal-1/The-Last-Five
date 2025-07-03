@@ -26,7 +26,7 @@ script = ExtResource("1_udpx5")
 wait_time = 1.5
 autostart = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 
 [node name="Source" type="AnimatedSprite2D" parent="."]

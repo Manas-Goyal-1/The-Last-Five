@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://dau2ixn4fhcl0"]
+
+[ext_resource type="Script" uid="uid://elmi56oxvevf" path="res://scripts/workstation.gd" id="1_f6vdx"]
+[ext_resource type="FontFile" uid="uid://5rp3xla2rqtb" path="res://assets/fonts/PixelOperator8.ttf" id="2_dn5qc"]
+[ext_resource type="FontFile" uid="uid://b8tnrkgs8qkg8" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_10ak5"]
+
+[node name="Workstation" type="Area2D"]
+script = ExtResource("1_f6vdx")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Popup" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_top = -30.0
+offset_bottom = -30.0
+scale = Vector2(0.4, 0.4)
+
+[node name="Panel" type="Panel" parent="Popup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -34.5
+offset_right = 35.0
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup/Panel"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -28.0
+offset_right = 25.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Label" type="Label" parent="Popup/Panel/VBoxContainer"]
+visibility_layer = 129
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_dn5qc")
+theme_override_font_sizes/font_size = 8
+text = "Number of Workers"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="SubtractButton" type="Button" parent="Popup/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_10ak5")
+theme_override_font_sizes/font_size = 8
+text = "-"
+
+[node name="NumWorkersLabel" type="Label" parent="Popup/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_10ak5")
+theme_override_font_sizes/font_size = 8
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AddButton" type="Button" parent="Popup/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_10ak5")
+theme_override_font_sizes/font_size = 8
+text = "+"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Popup/Panel/VBoxContainer/HBoxContainer/SubtractButton" to="." method="_on_subtract_button_pressed"]
+[connection signal="pressed" from="Popup/Panel/VBoxContainer/HBoxContainer/AddButton" to="." method="_on_add_button_pressed"]

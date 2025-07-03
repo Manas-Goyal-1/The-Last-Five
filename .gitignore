@@ -1,3 +1,35 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Godot-specific ignores
+
+# The Godot editor creates this import folder with imported resources (can be large)
+.import/
+
+# Godot's cache folder
+.cache/
+
+# Godot editor backup files
+*.import
+
+# Export templates and builds
+.export/
+
+# System files
+*.DS_Store
+Thumbs.db
+
+# Mono / C# build outputs (if using C# in Godot)
+bin/
+obj/
+
+# User-specific Godot editor config files
+.editor/
+
+# Other common ignores
+*.log
+*.tmp
+
+# Game Build
+/GameBuild/

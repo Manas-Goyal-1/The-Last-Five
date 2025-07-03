@@ -1,52 +1,51 @@
 [gd_scene load_steps=7 format=3 uid="uid://bieueg3gj7nt2"]
 
-[ext_resource type="Texture2D" uid="uid://dboldep3kdw74" path="res://assets/sprites/slime_purple.png" id="1_764y3"]
+[ext_resource type="Script" uid="uid://bfxh0vv3b28dm" path="res://scripts/bunker.gd" id="1_cyfgi"]
+[ext_resource type="Texture2D" uid="uid://fy7wfk5qj3g3" path="res://assets/sprites/background2.png" id="2_cyfgi"]
+[ext_resource type="Texture2D" uid="uid://cw52luvy2tv4x" path="res://assets/sprites/ground2.png" id="3_7c24m"]
+[ext_resource type="PackedScene" uid="uid://dau2ixn4fhcl0" path="res://scenes/workstation.tscn" id="4_hk1w7"]
+[ext_resource type="Texture2D" uid="uid://62rjt7krfi4b" path="res://icon.svg" id="5_tyiie"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ewk1p"]
-atlas = ExtResource("1_764y3")
-region = Rect2(0, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cyfgi"]
-atlas = ExtResource("1_764y3")
-region = Rect2(24, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7c24m"]
-atlas = ExtResource("1_764y3")
-region = Rect2(48, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hk1w7"]
-atlas = ExtResource("1_764y3")
-region = Rect2(72, 0, 24, 24)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tyiie"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ewk1p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cyfgi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7c24m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hk1w7")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gqei"]
+size = Vector2(28, 27)
 
 [node name="Bunker" type="Node2D"]
+script = ExtResource("1_cyfgi")
 
-[node name="NPCs" type="Node2D" parent="."]
-position = Vector2(0, 50)
+[node name="Workers" type="Node2D" parent="."]
 
-[node name="NPC1" type="AnimatedSprite2D" parent="NPCs"]
-sprite_frames = SubResource("SpriteFrames_tyiie")
-autoplay = "default"
-frame = 3
-frame_progress = 0.964065
+[node name="Node2D" type="Node2D" parent="Workers"]
+
+[node name="Node2D2" type="Node2D" parent="Workers"]
+
+[node name="Node2D3" type="Node2D" parent="Workers"]
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="Workstations" type="Node2D" parent="."]
+
+[node name="Workstation" parent="Workstations" instance=ExtResource("4_hk1w7")]
+position = Vector2(-31, 24)
+
+[node name="Sprite2D" type="Sprite2D" parent="Workstations/Workstation"]
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("5_tyiie")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Workstations/Workstation"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_6gqei")
 
 [node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_cyfgi")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, -20)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+position = Vector2(0, 20)
+texture = ExtResource("3_7c24m")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
+polygon = PackedVector2Array(-125, 95, -125, 51, -120, 49, -118, 48, -116, 48, -112, 49, -93, 49, -85, 50, -82, 53, -77, 55, -58, 56, -38, 56, -31, 58, -11, 58, -9, 59, -6, 58, -1, 56, 19, 56, 26, 58, 33, 59, 36, 59, 42, 60, 52, 59, 60, 59, 64, 60, 72, 60, 73, 59, 85, 59, 87, 58, 91, 57, 107, 57, 114, 59, 118, 61, 124, 62, 125, 63, 125, 95)

@@ -4,25 +4,35 @@ extends Node
 @onready var bunker: Node2D = $"../Bunker"
 @onready var player: CharacterBody2D = $"../Player"
 
+# Resources for inventory
+var wood = 0
+var money = 0
+var another_resource = 0
+var workers
+
+## To manage scenes
 func _ready() -> void:
+	# Need to do 'await' so the scenes can load properly
+	await outside.ready
+	await bunker.ready
 	show_outside()
+	
+	workers = $"../Bunker/Workers".get_children()
+	print(workers)
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("Click"):
+	if Input.is_action_just_pressed("RightClick"):
 		if outside.is_visible_in_tree():
 			show_bunker()
 		else:
 			show_outside()
 
 func show_bunker():
-	bunker.visible = true
-	outside.visible = false
+	bunker.set_visibility(true)
+	outside.set_visibility(false)
 	player.to_bunker()
-	# Disable outside so the zombies and weapons and everysthing stops.
-	outside.process_mode = Node.PROCESS_MODE_DISABLED
 
 func show_outside():
-	bunker.visible = false
-	outside.visible = true
+	bunker.set_visibility(false)
+	outside.set_visibility(true)
 	player.to_outside()
-	outside.process_mode = Node.PROCESS_MODE_INHERIT	# Enable outside again

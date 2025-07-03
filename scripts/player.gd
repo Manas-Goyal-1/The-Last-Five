@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+const GRAVITY = 0.7
 const SPEED = 100
 const MAX_HEALTH = 100
 var health = MAX_HEALTH
@@ -12,20 +12,28 @@ var is_outside
 
 func _process(delta: float) -> void:
 	
-	var direction = Vector2.ZERO
-	if Input.is_action_pressed("right"):
-		direction.x += 1
-	if Input.is_action_pressed("left"):
-		direction.x -= 1
-	
 	if is_outside:
+		var direction = Vector2.ZERO
+		if Input.is_action_pressed("right"):
+			direction.x += 1
+		if Input.is_action_pressed("left"):
+			direction.x -= 1
 		if Input.is_action_pressed("down"):
 			direction.y += 1
 		if Input.is_action_pressed("up"):
 			direction.y -= 1
-	
-	# velocity is built in
-	velocity = direction.normalized() * SPEED
+		
+		# velocity is built in
+		velocity = direction.normalized() * SPEED
+	else:
+		var direction = 0
+		velocity.y += GRAVITY * SPEED
+		if Input.is_action_pressed("right"):
+			direction += 1
+		if Input.is_action_pressed("left"):
+			direction -= 1
+		
+		velocity.x = direction * SPEED
 	
 	move_and_slide()
 
@@ -40,8 +48,11 @@ func take_damage(damage):
 
 func to_bunker():
 	is_outside = false
-	position = Vector2(0,50)
+	#position = Vector2(0,50)
+	position = Vector2.ZERO
+	scale = Vector2(0.7, 0.7)
 
 func to_outside():
 	is_outside = true
 	position = Vector2.ZERO
+	scale = Vector2.ONE
