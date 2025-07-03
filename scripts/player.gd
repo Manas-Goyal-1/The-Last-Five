@@ -49,10 +49,15 @@ func take_damage(damage):
 func to_bunker():
 	is_outside = false
 	position = Vector2(55, -30)
-	
 	scale = Vector2(0.8, 0.8)	# So the player looks similar in size in both scenes
+	
+	self.collision_layer = 1 << 1
+	self.collision_mask = 1 << 1
 
 func to_outside():
 	is_outside = true
 	position = Vector2.ZERO
 	scale = Vector2.ONE
+	
+	self.collision_layer = 1 << 0
+	self.collision_mask = 1 << 0

@@ -16,8 +16,14 @@ var workers = []
 var wait_time = 9
 var resource_count = 0
 
+func _ready() -> void:
+	popup.visible = false
+
 # When player enters its area
 func _on_body_entered(body: Node2D) -> void:
+	if not body.is_in_group("player"):
+		return
+	
 	# Control UI Thing
 	popup.visible = true
 	_update()
@@ -47,9 +53,8 @@ func _on_subtract_button_pressed() -> void:
 func _on_add_button_pressed() -> void:
 	var worker = game_manager.workers.pop_back()
 	workers.append(worker)
-	worker.move_to(position)
+	worker.move_to(position + Vector2(10 + randi_range(-5, 5), randi_range(-5, 0)))
 	_update()
-
 
 func _update():
 	## Updating UI

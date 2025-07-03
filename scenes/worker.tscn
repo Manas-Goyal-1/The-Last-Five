@@ -11,13 +11,13 @@ region = Rect2(0, 0, 24, 24)
 atlas = ExtResource("1_mj6w4")
 region = Rect2(24, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vwx2a"]
-atlas = ExtResource("1_mj6w4")
-region = Rect2(48, 0, 24, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_leqb2"]
 atlas = ExtResource("1_mj6w4")
 region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwx2a"]
+atlas = ExtResource("1_mj6w4")
+region = Rect2(48, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ec5k7"]
 animations = [{
@@ -29,10 +29,10 @@ animations = [{
 "texture": SubResource("AtlasTexture_sb737")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vwx2a")
+"texture": SubResource("AtlasTexture_leqb2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_leqb2")
+"texture": SubResource("AtlasTexture_vwx2a")
 }],
 "loop": true,
 "name": &"default",
@@ -46,3 +46,5 @@ script = ExtResource("1_4n0ys")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ec5k7")
 autoplay = "default"
+frame = 1
+frame_progress = 0.194318

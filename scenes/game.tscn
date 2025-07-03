@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvbdair2vutn0"]
+[gd_scene load_steps=10 format=3 uid="uid://bvbdair2vutn0"]
 
 [ext_resource type="PackedScene" uid="uid://btck767c7bidv" path="res://scenes/outside.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://bto3uwsltsvkn" path="res://scripts/game_manager.gd" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bieueg3gj7nt2" path="res://scenes/bunker.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bia26am5wiknn" path="res://scenes/player.tscn" id="4_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://5om8aq7vkei5" path="res://assets/sprites/coin.png" id="5_gee14"]
+[ext_resource type="FontFile" uid="uid://ek11878feeu8" path="res://assets/fonts/EraserDust.ttf" id="5_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://ddgmmqh5eyf8x" path="res://assets/sprites/wood_icon.png" id="7_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://dj6oj3gypr8bb" path="res://assets/sprites/water_drop1.png" id="7_u5sy4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tnpc"]
+atlas = ExtResource("5_gee14")
+region = Rect2(2, 2, 12, 12)
 
 [node name="Game" type="Node2D"]
 
@@ -17,3 +25,59 @@ unique_name_in_owner = true
 [node name="Outside" parent="." instance=ExtResource("1_uwrxv")]
 
 [node name="Bunker" parent="." instance=ExtResource("3_lnu2h")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+offset_left = 71.57
+offset_top = -68.0
+offset_right = 121.57
+offset_bottom = -2.0
+scale = Vector2(0.6, 0.6)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 2
+
+[node name="MoneyIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_0tnpc")
+expand_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_u5sy4")
+theme_override_font_sizes/font_size = 16
+text = "100"
+
+[node name="WoodIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("7_0tnpc")
+expand_mode = 2
+
+[node name="WoodLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_u5sy4")
+theme_override_font_sizes/font_size = 16
+text = "100"
+
+[node name="WaterIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("7_u5sy4")
+expand_mode = 2
+
+[node name="WaterLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_u5sy4")
+theme_override_font_sizes/font_size = 16
+text = "100"

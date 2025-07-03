@@ -45,10 +45,14 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 # To damage the player
 func _on_body_entered(body: Node2D) -> void:
+	if not body.is_in_group("player"):
+		return
 	player = body
 	player_attack_timer.start()
 
 func _on_body_exited(body: Node2D) -> void:
+	if not body.is_in_group("player"):
+		return
 	player_attack_timer.stop()
 
 func _on_player_attack_timer_timeout() -> void:

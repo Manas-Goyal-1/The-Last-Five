@@ -9,7 +9,4 @@ func _process(delta: float) -> void:
 func set_visibility(visibility):
 	visible = visibility
 	if visible:
-		process_mode = Node.PROCESS_MODE_INHERIT
 		camera.make_current()
-	else:
-		process_mode = Node.PROCESS_MODE_DISABLED

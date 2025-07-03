@@ -21,25 +21,25 @@ height = 40.0
 [node name="Bunker" type="Node2D"]
 script = ExtResource("1_cyfgi")
 
-[node name="Workers" type="Node2D" parent="."]
-
-[node name="Worker" parent="Workers" instance=ExtResource("2_hqi4v")]
-position = Vector2(-8.215, 25.825)
-
-[node name="Worker2" parent="Workers" instance=ExtResource("2_hqi4v")]
-position = Vector2(-2.905, 25.825)
-
-[node name="Worker3" parent="Workers" instance=ExtResource("2_hqi4v")]
-position = Vector2(0, 25.825)
-
-[node name="Worker4" parent="Workers" instance=ExtResource("2_hqi4v")]
-position = Vector2(6.985, 25.825)
-
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
 limit_left = -125
 limit_right = 125
 limit_smoothed = true
+
+[node name="Workers" type="Node2D" parent="."]
+
+[node name="Worker" parent="Workers" instance=ExtResource("2_hqi4v")]
+position = Vector2(-8.215, 26)
+
+[node name="Worker2" parent="Workers" instance=ExtResource("2_hqi4v")]
+position = Vector2(-2.905, 26)
+
+[node name="Worker3" parent="Workers" instance=ExtResource("2_hqi4v")]
+position = Vector2(0, 26)
+
+[node name="Worker4" parent="Workers" instance=ExtResource("2_hqi4v")]
+position = Vector2(6.985, 26)
 
 [node name="Workstations" type="Node2D" parent="."]
 
@@ -85,6 +85,8 @@ texture = ExtResource("6_hqi4v")
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(0, -20)
+collision_layer = 2
+collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground"]
 position = Vector2(0, 20)

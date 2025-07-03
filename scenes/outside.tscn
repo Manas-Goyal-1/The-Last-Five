@@ -40,4 +40,6 @@ position = Vector2(83, 28)
 
 [node name="Projectiles" type="Node2D" parent="."]
 
+[node name="Weapons" type="Node2D" parent="."]
+
 [connection signal="timeout" from="ZombieSpawnerTimer" to="." method="_on_zombie_spawner_timer_timeout"]

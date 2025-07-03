@@ -19,17 +19,23 @@ func _ready() -> void:
 	
 	workers = $"../Bunker/Workers".get_children()
 
+
 func _process(delta: float) -> void:
+	# Check to switch screen
 	if Input.is_action_just_pressed("RightClick"):
 		if outside.is_visible_in_tree():
 			show_bunker()
 		else:
 			show_outside()
 
+		#camera.position.x = player.position.x
+
+
 func show_bunker():
 	bunker.set_visibility(true)
 	outside.set_visibility(false)
 	player.to_bunker()
+
 
 func show_outside():
 	bunker.set_visibility(false)
