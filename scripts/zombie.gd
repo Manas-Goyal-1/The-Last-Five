@@ -1,6 +1,6 @@
 extends Area2D
 
-const SPEED = 20
+const SPEED = 30
 const MAX_HEALTH = 20
 var health = MAX_HEALTH
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D

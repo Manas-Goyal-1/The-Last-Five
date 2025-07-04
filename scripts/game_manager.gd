@@ -15,6 +15,7 @@ var money = 0
 var water = 0
 var workers
 
+
 ## To manage scenes
 func _ready() -> void:
 	# Need to do 'await' so the scenes can load properly
@@ -55,7 +56,7 @@ func add_water(amount):
 	water += amount
 
 
-func _update_label(label: Label, original, amount):
+func _update_label(label, original, amount):
 	#print(label.name + ": "+ str(amount))
 	
 	get_tree().create_tween().tween_method(func(num): label.text = str(num), original, original+amount, amount/15.0).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)

@@ -10,45 +10,46 @@
 [ext_resource type="Texture2D" uid="uid://b41wyq1xdpu7s" path="res://assets/sprites/background.png" id="6_hqi4v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6gqei"]
-size = Vector2(26, 18)
+size = Vector2(80, 52)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6gqei"]
-radius = 13.0
-height = 40.0
+radius = 30.7
+height = 91.4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tyiie"]
+radius = 32.249
 
 [node name="Bunker" type="Node2D"]
 script = ExtResource("1_cyfgi")
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(5, 5)
-limit_left = -125
-limit_right = 125
+zoom = Vector2(2.5, 2.5)
+limit_left = -310
+limit_right = 310
 limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="Workers" type="Node2D" parent="."]
 
 [node name="Worker" parent="Workers" instance=ExtResource("2_hqi4v")]
-position = Vector2(-8.215, 26)
+position = Vector2(36, 49)
 
 [node name="Worker2" parent="Workers" instance=ExtResource("2_hqi4v")]
-position = Vector2(-2.905, 26)
+position = Vector2(41.31, 49)
 
 [node name="Worker3" parent="Workers" instance=ExtResource("2_hqi4v")]
-position = Vector2(0, 26)
+position = Vector2(44.215, 49)
 
 [node name="Worker4" parent="Workers" instance=ExtResource("2_hqi4v")]
-position = Vector2(6.985, 26)
+position = Vector2(51.2, 49)
 
 [node name="Workstations" type="Node2D" parent="."]
 
 [node name="Woodstation" parent="Workstations" instance=ExtResource("4_hk1w7")]
-position = Vector2(-107.335, 21.955)
+position = Vector2(-53, 64)
 
 [node name="Sprite2D" type="Sprite2D" parent="Workstations/Woodstation"]
-scale = Vector2(0.22, 0.22)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("3_tyiie")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Workstations/Woodstation"]
@@ -57,10 +58,11 @@ shape = SubResource("RectangleShape2D_6gqei")
 
 [node name="Waterstation" parent="Workstations" instance=ExtResource("4_hk1w7")]
 z_index = 2
-position = Vector2(-72.5, 30.5)
+position = Vector2(-182.3, 65.2)
 resource_type = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Workstations/Waterstation"]
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("4_6gqei")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Workstations/Waterstation"]
@@ -68,11 +70,10 @@ visible = false
 shape = SubResource("CapsuleShape2D_6gqei")
 
 [node name="Moneystation" parent="Workstations" instance=ExtResource("4_hk1w7")]
-position = Vector2(100, 29.755)
+position = Vector2(235, 61)
 resource_type = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Workstations/Moneystation"]
-scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_tyiie")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Workstations/Moneystation"]
@@ -82,10 +83,13 @@ shape = SubResource("CircleShape2D_tyiie")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -1
+position = Vector2(-2, 1)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("6_hqi4v")
 
 [node name="Ground" type="StaticBody2D" parent="."]
-position = Vector2(0, -20)
+position = Vector2(-1, -61)
+scale = Vector2(2.5, 2.5)
 collision_layer = 2
 collision_mask = 2
 

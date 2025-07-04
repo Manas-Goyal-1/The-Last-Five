@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const GRAVITY = 0.3
-const SPEED = 100
+const SPEED = 150
 const MAX_HEALTH = 100
 var health = MAX_HEALTH
 var is_outside
@@ -35,6 +35,19 @@ func _process(delta: float) -> void:
 		
 		velocity.x = direction * SPEED
 	
+	print(velocity.x, velocity.x == 0)
+	if velocity.x == 0:
+		animated_sprite.play("idle")
+	else:
+		if animated_sprite.animation != "walk":
+			animated_sprite.play("walk")
+		if velocity.x > 0:
+			animated_sprite.flip_h = false
+		else:
+			animated_sprite.flip_h = true
+
+	
+	
 	move_and_slide()
 
 
@@ -49,7 +62,7 @@ func take_damage(damage):
 func to_bunker():
 	is_outside = false
 	position = Vector2(55, -30)
-	scale = Vector2(0.8, 0.8)	# So the player looks similar in size in both scenes
+	#scale = Vector2(0.8, 0.8)	# So the player looks similar in size in both scenes
 	
 	self.collision_layer = 1 << 1
 	self.collision_mask = 1 << 1

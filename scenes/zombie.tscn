@@ -106,9 +106,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_httt1"]
-size = Vector2(12.375, 12)
+size = Vector2(12.375, 13)
 
 [node name="Zombie" type="Area2D" groups=["zombies"]]
+scale = Vector2(1.6, 1.6)
 script = ExtResource("1_httt1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -119,7 +120,7 @@ animation = &"hit"
 autoplay = "spawn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.1875, 0)
+position = Vector2(-0.1875, -0.5)
 shape = SubResource("RectangleShape2D_httt1")
 
 [node name="PlayerAttackTimer" type="Timer" parent="."]

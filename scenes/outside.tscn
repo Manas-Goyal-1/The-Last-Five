@@ -27,9 +27,8 @@ wait_time = 1.5
 autostart = true
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
-position_smoothing_speed = 2.0
 
 [node name="Source" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lpxjy")

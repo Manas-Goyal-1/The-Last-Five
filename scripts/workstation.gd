@@ -8,9 +8,9 @@ enum ResourceTypes {WOOD, MONEY, WATER}
 @onready var timer: Timer = $Timer
 
 @onready var popup: Control = $Popup
-@onready var subtract_button: Button = $Popup/Panel/VBoxContainer/HBoxContainer/SubtractButton
-@onready var num_workers_label: Label = $Popup/Panel/VBoxContainer/HBoxContainer/NumWorkersLabel
-@onready var add_button: Button = $Popup/Panel/VBoxContainer/HBoxContainer/AddButton
+@onready var subtract_button: Button = $Popup/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SubtractButton
+@onready var num_workers_label: Label = $Popup/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NumWorkersLabel
+@onready var add_button: Button = $Popup/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AddButton
 const MAX_WORKERS = 3
 
 var workers = []
