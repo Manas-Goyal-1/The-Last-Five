@@ -26,6 +26,7 @@ zoom = Vector2(5, 5)
 limit_left = -125
 limit_right = 125
 limit_smoothed = true
+position_smoothing_enabled = true
 
 [node name="Workers" type="Node2D" parent="."]
 

@@ -4,6 +4,7 @@ extends Area2D
 enum ResourceTypes {WOOD, MONEY, WATER}
 @export var resource_type: ResourceTypes
 @onready var game_manager = get_tree().get_current_scene().get_node("%GameManager")
+
 @onready var timer: Timer = $Timer
 
 @onready var popup: Control = $Popup
@@ -26,15 +27,14 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	# Control UI Thing
 	popup.visible = true
-	_update()
 	
 	# Collect resource
 	if resource_type == ResourceTypes.WOOD:
-		game_manager.wood += resource_count
+		game_manager.add_wood(resource_count)
 	elif resource_type == ResourceTypes.MONEY:
-		game_manager.money += resource_count
+		game_manager.add_money(resource_count)
 	else:
-		game_manager.water += resource_count
+		game_manager.add_water(resource_count)
 	#print("Added " + str(resource_count) + " resource")
 	resource_count = 0
 
@@ -70,8 +70,9 @@ func _update():
 	else:
 		subtract_button.disabled = false
 	
-	## Updating Worker resource stuff
+	### Updating Worker resource stuff
 	_reset_timer()
+
 
 func _on_timer_timeout() -> void:
 	resource_count += 1
