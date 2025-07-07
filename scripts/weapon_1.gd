@@ -1,22 +1,23 @@
-extends Area2D
+extends Weapon
+class_name BowAndArrow
 
-var health = 30
+var ArrowScene = preload("res://scenes/arrow.tscn")
+@onready var sprite: Sprite2D = $Sprite2D
 
-var ProjectileScene = preload("res://scenes/projectile.tscn")
-@onready var zombies: Node = $"../Zombies"
+#const build_cost = [0, 0, 0]
+#const upgrade_cost = [0, 0, 0]
 
-func take_damage(damage):
-	health -= damage
-	if health < 0:
-		health = 0
+const build_cost = [0, 8, 0]
+const upgrade_cost = [5, 4, 2]
 
+func _ready() -> void:
+	setup(10, 1, 60, ArrowScene)
+	super._ready()
 
-func _on_timer_timeout() -> void:
-	var projectile = ProjectileScene.instantiate()
-	if zombies.get_child_count() == 0:
-		return
-	
-	projectile.target = zombies.get_children()[randi_range(0, zombies.get_child_count()-1)].position
-	projectile.position = position
-	
-	get_node("../Projectiles").add_child(projectile)
+func get_target():
+	## Random Zombie
+	return zombies.get_children()[randi_range(0, zombies.get_child_count()-1)]
+
+func upgrade():
+	super.upgrade()
+	sprite.texture = load("res://assets/sprites/weapons/bow_and_arrow/bow" + str(level) + ".png")

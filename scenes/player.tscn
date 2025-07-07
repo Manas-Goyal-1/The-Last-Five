@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bia26am5wiknn"]
+[gd_scene load_steps=13 format=3 uid="uid://bia26am5wiknn"]
 
 [ext_resource type="Script" uid="uid://cxjyyv1t8yjr0" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://bdvejyu1ogoo6" path="res://assets/sprites/player/idle/player_idle.png" id="2_fjrip"]
@@ -7,6 +7,9 @@
 [ext_resource type="FontFile" uid="uid://5rp3xla2rqtb" path="res://assets/fonts/PixelOperator8.ttf" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://bxk0sj6lcq80m" path="res://assets/sprites/player/walk/frame_2.png" id="4_smehm"]
 [ext_resource type="Texture2D" uid="uid://cru0vgdrcx3ge" path="res://assets/sprites/player/walk/frame_3.png" id="5_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://ptn4vwpvyyfw" path="res://assets/sprites/health_bar_base.png" id="8_y4r1p"]
+[ext_resource type="Texture2D" uid="uid://c4nsxpwvxee5d" path="res://assets/sprites/health_bar_overlay.png" id="9_d2wvv"]
+[ext_resource type="Texture2D" uid="uid://cp7e74f2le0vd" path="res://assets/sprites/health_bar_progress.png" id="10_3v2ag"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g2els"]
 animations = [{
@@ -46,14 +49,16 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, 0)
 sprite_frames = SubResource("SpriteFrames_g2els")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
+frame_progress = 0.428647
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_3vyb7")
 
 [node name="Health" type="Label" parent="."]
+visible = false
 offset_left = -11.0
 offset_top = -42.0
 offset_right = 10.0
@@ -63,3 +68,18 @@ theme_override_font_sizes/font_size = 8
 text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_top = -39.0
+offset_right = 227.0
+offset_bottom = -7.0
+grow_horizontal = 2
+scale = Vector2(0.2, 0.2)
+value = 100.0
+texture_under = ExtResource("8_y4r1p")
+texture_over = ExtResource("9_d2wvv")
+texture_progress = ExtResource("10_3v2ag")

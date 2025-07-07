@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cx04khn534qsj"]
+
+[ext_resource type="Script" uid="uid://bovv6n5docves" path="res://scripts/weapon_1.gd" id="1_bupce"]
+[ext_resource type="Texture2D" uid="uid://bmbt1ckvacis8" path="res://assets/sprites/weapons/bow_and_arrow/bow1.png" id="2_6kayi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ck4sf"]
+radius = 32.5
+height = 155.0
+
+[node name="BowAndArraow" type="Area2D" groups=["weapons"]]
+scale = Vector2(0.35, 0.35)
+script = ExtResource("1_bupce")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = ExtResource("2_6kayi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.13163e-14, 9.53674e-07)
+shape = SubResource("CapsuleShape2D_ck4sf")

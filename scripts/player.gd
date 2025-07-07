@@ -1,13 +1,25 @@
 extends CharacterBody2D
 
 const GRAVITY = 0.3
-const SPEED = 150
+const SPEED = 200
 const MAX_HEALTH = 100
-var health = MAX_HEALTH
+var health
 var is_outside
 
 @onready var animated_sprite = $AnimatedSprite2D # use this to change animation when moving
 @onready var health_label: Label = $Health	# Just temporary until we make a health bar
+@onready var health_bar: TextureProgressBar = $HealthBar
+@onready var game_manager = get_tree().get_current_scene().get_node("%GameManager")
+
+var tween
+
+func _ready() -> void:
+	reset()
+
+func reset():
+	health = MAX_HEALTH
+	to_bunker()
+	update_health_bar(1)
 
 
 func _process(delta: float) -> void:
@@ -35,7 +47,6 @@ func _process(delta: float) -> void:
 		
 		velocity.x = direction * SPEED
 	
-	print(velocity.x, velocity.x == 0)
 	if velocity.x == 0:
 		animated_sprite.play("idle")
 	else:
@@ -43,7 +54,7 @@ func _process(delta: float) -> void:
 			animated_sprite.play("walk")
 		if velocity.x > 0:
 			animated_sprite.flip_h = false
-		else:
+		elif velocity.x < 0:
 			animated_sprite.flip_h = true
 
 	
@@ -54,10 +65,19 @@ func _process(delta: float) -> void:
 func take_damage(damage):
 	health -= damage
 	
-	if health < 0:
-		health = 0
+	if health <= 0:
+		game_manager.respawn()
 	
-	health_label.text = str(health)
+	update_health_bar(damage/5)
+	#health_bar.value = health
+	#health_label.text = str(health)
+
+func update_health_bar(time):
+	if tween:
+		tween.kill()
+	
+	tween = get_tree().create_tween()
+	tween.tween_property(health_bar, "value", health, time)
 
 func to_bunker():
 	is_outside = false

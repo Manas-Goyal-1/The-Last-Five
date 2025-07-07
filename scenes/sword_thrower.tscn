@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv12y87wsdmk7"]
+
+[ext_resource type="Script" uid="uid://ddd6nmsndcw" path="res://scripts/weapon_2.gd" id="1_cxr66"]
+[ext_resource type="Texture2D" uid="uid://dkkjwv0o2l1ia" path="res://assets/sprites/weapons/sword_thrower/cannon1.png" id="2_cxr66"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lxout"]
+radius = 12.5
+height = 44.0
+
+[node name="SwordThrower" type="Area2D" groups=["weapons"]]
+script = ExtResource("1_cxr66")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cxr66")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lxout")

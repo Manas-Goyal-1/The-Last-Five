@@ -109,6 +109,7 @@ animations = [{
 size = Vector2(12.375, 13)
 
 [node name="Zombie" type="Area2D" groups=["zombies"]]
+z_index = 1
 scale = Vector2(1.6, 1.6)
 script = ExtResource("1_httt1")
 
@@ -127,6 +128,10 @@ shape = SubResource("RectangleShape2D_httt1")
 wait_time = 0.1
 
 [node name="WeaponAttackTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="BunkerAttackTimer" type="Timer" parent="."]
+wait_time = 0.1
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
@@ -135,3 +140,4 @@ wait_time = 0.1
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="PlayerAttackTimer" to="." method="_on_player_attack_timer_timeout"]
 [connection signal="timeout" from="WeaponAttackTimer" to="." method="_on_weapon_attack_timer_timeout"]
+[connection signal="timeout" from="BunkerAttackTimer" to="." method="_on_bunker_attack_timer_timeout"]

@@ -14,7 +14,7 @@ enum ResourceTypes {WOOD, MONEY, WATER}
 const MAX_WORKERS = 3
 
 var workers = []
-var wait_time = 9
+var wait_time = 8
 var resource_count = 0
 
 func _ready() -> void:
@@ -27,7 +27,8 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	# Control UI Thing
 	popup.visible = true
-	
+	_update()
+
 	# Collect resource
 	if resource_type == ResourceTypes.WOOD:
 		game_manager.add_wood(resource_count)
@@ -46,15 +47,17 @@ func _on_body_exited(body: Node2D) -> void:
 func _on_subtract_button_pressed() -> void:
 	var worker = workers.pop_back()
 	game_manager.workers.append(worker)
-	worker.move_to(Vector2(0, 30))
+	worker.move_to(Vector2(randi_range(-5, 15), 65))
 	_update()
+	_reset_timer()
 
 
 func _on_add_button_pressed() -> void:
 	var worker = game_manager.workers.pop_back()
 	workers.append(worker)
-	worker.move_to(position + Vector2(10 + randi_range(-5, 5), randi_range(-5, 0)))
+	worker.move_to(position + Vector2(20 + randi_range(-5, 5), randi_range(0, 15)))
 	_update()
+	_reset_timer()
 
 func _update():
 	## Updating UI
@@ -69,9 +72,7 @@ func _update():
 		subtract_button.disabled = true
 	else:
 		subtract_button.disabled = false
-	
-	### Updating Worker resource stuff
-	_reset_timer()
+
 
 
 func _on_timer_timeout() -> void:

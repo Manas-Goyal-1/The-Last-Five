@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://btck767c7bidv"]
+[gd_scene load_steps=5 format=3 uid="uid://btck767c7bidv"]
 
 [ext_resource type="Script" uid="uid://b46hp77qd8jhm" path="res://scripts/outside.gd" id="1_udpx5"]
 [ext_resource type="Texture2D" uid="uid://ddik8kauq6r2o" path="res://assets/sprites/fruit.png" id="3_udpx5"]
-[ext_resource type="PackedScene" uid="uid://cx04khn534qsj" path="res://scenes/weapon_1.tscn" id="4_7r1kg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7r1kg"]
 atlas = ExtResource("3_udpx5")
@@ -23,24 +22,28 @@ animations = [{
 script = ExtResource("1_udpx5")
 
 [node name="ZombieSpawnerTimer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 2.0
 autostart = true
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
+position_smoothing_speed = 3.0
 
 [node name="Source" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_lpxjy")
 autoplay = "default"
 
-[node name="Zombies" type="Node2D" parent="."]
-
-[node name="Weapon1" parent="." instance=ExtResource("4_7r1kg")]
-position = Vector2(83, 28)
+[node name="Weapons" type="Node2D" parent="."]
 
 [node name="Projectiles" type="Node2D" parent="."]
 
-[node name="Weapons" type="Node2D" parent="."]
+[node name="Zombies" type="Node2D" parent="."]
+
+[node name="NextDifficultyTimer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
 
 [connection signal="timeout" from="ZombieSpawnerTimer" to="." method="_on_zombie_spawner_timer_timeout"]
+[connection signal="timeout" from="NextDifficultyTimer" to="." method="_on_next_difficulty_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvbdair2vutn0"]
+[gd_scene load_steps=14 format=3 uid="uid://bvbdair2vutn0"]
 
 [ext_resource type="PackedScene" uid="uid://btck767c7bidv" path="res://scenes/outside.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://bto3uwsltsvkn" path="res://scripts/game_manager.gd" id="1_yqjtg"]
@@ -8,6 +8,10 @@
 [ext_resource type="FontFile" uid="uid://ek11878feeu8" path="res://assets/fonts/EraserDust.ttf" id="5_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://ddgmmqh5eyf8x" path="res://assets/sprites/wood_icon.png" id="7_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://dj6oj3gypr8bb" path="res://assets/sprites/water_drop1.png" id="7_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://ptn4vwpvyyfw" path="res://assets/sprites/health_bar_base.png" id="9_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://c4nsxpwvxee5d" path="res://assets/sprites/health_bar_overlay.png" id="10_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://cp7e74f2le0vd" path="res://assets/sprites/health_bar_progress.png" id="11_dinhu"]
+[ext_resource type="Texture2D" uid="uid://deus2nxvh2wim" path="res://assets/sprites/game_end_screen.png" id="12_dinhu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0tnpc"]
 atlas = ExtResource("5_gee14")
@@ -29,7 +33,7 @@ unique_name_in_owner = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 5
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+[node name="InventoryPanel" type="PanelContainer" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -41,14 +45,14 @@ grow_horizontal = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/InventoryPanel"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/InventoryPanel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -56,35 +60,57 @@ theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="MoneyIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+[node name="MoneyIcon" type="TextureRect" parent="CanvasLayer/InventoryPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_0tnpc")
 expand_mode = 2
 
-[node name="MoneyLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+[node name="MoneyLabel" type="Label" parent="CanvasLayer/InventoryPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_u5sy4")
 theme_override_font_sizes/font_size = 40
 text = "0"
 
-[node name="WoodIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+[node name="WoodIcon" type="TextureRect" parent="CanvasLayer/InventoryPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 texture = ExtResource("7_0tnpc")
 expand_mode = 2
 
-[node name="WoodLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+[node name="WoodLabel" type="Label" parent="CanvasLayer/InventoryPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_u5sy4")
 theme_override_font_sizes/font_size = 40
 text = "0"
 
-[node name="WaterIcon" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+[node name="WaterIcon" type="TextureRect" parent="CanvasLayer/InventoryPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 texture = ExtResource("7_u5sy4")
 expand_mode = 2
 
-[node name="WaterLabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+[node name="WaterLabel" type="Label" parent="CanvasLayer/InventoryPanel/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_u5sy4")
 theme_override_font_sizes/font_size = 40
 text = "0"
+
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 20.0
+offset_right = 125.0
+offset_bottom = 30.0
+grow_horizontal = 2
+max_value = 200.0
+value = 200.0
+texture_under = ExtResource("9_0tnpc")
+texture_over = ExtResource("10_kvpfn")
+texture_progress = ExtResource("11_dinhu")
+
+[node name="EndScreen" type="TextureRect" parent="CanvasLayer"]
+visible = false
+offset_left = -63.0
+offset_right = 1136.0
+offset_bottom = 720.0
+texture = ExtResource("12_dinhu")

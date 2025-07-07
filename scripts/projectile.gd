@@ -1,17 +1,20 @@
 extends Area2D
+class_name Projectile
 
-const DAMAGE = 10
-const SPEED = 275
-var target: Vector2
+var damage = 10
+var speed = 350
+var target
 
+func _ready() -> void:
+	connect("area_entered", _on_area_entered)
 
 # Momvement
 func _process(delta: float) -> void:
-	var direction: Vector2 = target - position
-	var velocity = direction.normalized() * SPEED
+	var direction = target - position
+	var velocity = direction.normalized() * speed
 	self.position += velocity * delta
 
-	if abs(position.x) > get_viewport_rect().size.x or abs(position.y) > get_viewport_rect().size.y or direction.length() < 3:
+	if direction.length() < 3:
 		queue_free()
 
 
@@ -20,5 +23,5 @@ func _on_area_entered(area: Area2D) -> void:
 	if not area.is_in_group("zombies"):
 		return
 	
-	area.take_damage(DAMAGE)
+	area.take_damage(damage)
 	queue_free()

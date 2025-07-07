@@ -23,7 +23,7 @@ radius = 32.249
 script = ExtResource("1_cyfgi")
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(2, 2)
 limit_left = -310
 limit_right = 310
 limit_smoothed = true
@@ -32,16 +32,16 @@ position_smoothing_enabled = true
 [node name="Workers" type="Node2D" parent="."]
 
 [node name="Worker" parent="Workers" instance=ExtResource("2_hqi4v")]
-position = Vector2(36, 49)
+position = Vector2(25, 66)
 
 [node name="Worker2" parent="Workers" instance=ExtResource("2_hqi4v")]
-position = Vector2(41.31, 49)
+position = Vector2(33, 65)
 
 [node name="Worker3" parent="Workers" instance=ExtResource("2_hqi4v")]
-position = Vector2(44.215, 49)
+position = Vector2(53, 66)
 
 [node name="Worker4" parent="Workers" instance=ExtResource("2_hqi4v")]
-position = Vector2(51.2, 49)
+position = Vector2(79, 71)
 
 [node name="Workstations" type="Node2D" parent="."]
 
@@ -57,7 +57,7 @@ visible = false
 shape = SubResource("RectangleShape2D_6gqei")
 
 [node name="Waterstation" parent="Workstations" instance=ExtResource("4_hk1w7")]
-z_index = 2
+z_index = 5
 position = Vector2(-182.3, 65.2)
 resource_type = 2
 
@@ -100,3 +100,8 @@ texture = ExtResource("3_7c24m")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
 visible = false
 polygon = PackedVector2Array(-135, 96, -135, -55, -125, -55, -125, 51, -120, 49, -118, 48, -116, 48, -112, 49, -93, 49, -85, 50, -78, 52, -69, 53, -58, 56, -38, 56, -31, 58, -11, 58, -9, 59, -6, 58, -1, 56, 19, 56, 26, 58, 33, 59, 36, 59, 42, 60, 52, 59, 60, 59, 64, 60, 72, 60, 73, 59, 85, 59, 87, 58, 91, 57, 107, 57, 114, 59, 118, 61, 124, 62, 125, 63, 125, -55, 132, -55, 132, 96)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
