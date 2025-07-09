@@ -1,6 +1,6 @@
 extends Area2D
 
-var max_health = 20
+var max_health = 18
 var speed = 25
 var health = max_health
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D

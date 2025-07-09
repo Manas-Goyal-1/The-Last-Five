@@ -19,15 +19,21 @@ var workers
 var health = 200
 @onready var health_bar: TextureProgressBar = $"../CanvasLayer/HealthBar"
 
+#var health_tween: Tween
 
 ## To manage scenes
 func _ready() -> void:
-	# Need to do 'await' so the scenes can load properly
+
+# Need to do 'await' so the scenes can load properly
 	await outside.ready
 	await bunker.ready
 	show_bunker()
 	
 	workers = $"../Bunker/Workers".get_children()
+	
+	##print(health_tween == null)
+	#health_tween = get_tree().create_tween()
+	#print(health_tween.is_valid(), health_tween != null)
 
 func _process(delta: float) -> void:
 	## To change scenes
@@ -40,6 +46,7 @@ func _process(delta: float) -> void:
 func respawn():
 	take_damage(40)
 	show_bunker()
+	#show_outside()
 	player.reset()
 	
 	wood = 0
@@ -60,8 +67,15 @@ func take_damage(dmg):
 		inventory_panel.visible = false
 		health_bar.visible = false
 		end_screen.visible = true
-		
-	get_tree().create_tween().tween_property(health_bar, "value", health, dmg)
+	
+	
+	#print(health_tween.is_valid(), health_tween != null)
+	#if !health_tween.is_valid():
+		#health_tween = get_tree().create_tween()
+	
+	#health_tween.tween_property(health_bar, "value", health, dmg/40)
+	get_tree().create_tween().tween_property(health_bar, "value", health, dmg/40)
+
 
 func can_buy(cost):
 	return money >= cost[0] and wood >= cost[1] and water >= cost[2]

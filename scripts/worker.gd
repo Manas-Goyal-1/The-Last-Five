@@ -3,7 +3,7 @@ extends Node2D
 @onready var sprite: Sprite2D = $Sprite2D
 
 func _ready() -> void:
-	if randi_range(0, 0) == 1:
+	if randi_range(0, 1):
 		sprite.texture = load("res://assets/sprites/workers/male_worker.png")
 	else:
 		sprite.texture = load("res://assets/sprites/workers/female_worker.png")

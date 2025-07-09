@@ -11,7 +11,7 @@ const build_cost = [0, 8, 0]
 const upgrade_cost = [5, 4, 2]
 
 func _ready() -> void:
-	setup(10, 1, 60, ArrowScene)
+	setup(15, 1, 150, ArrowScene)
 	super._ready()
 
 func get_target():

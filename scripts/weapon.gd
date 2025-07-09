@@ -25,12 +25,6 @@ func _ready():
 	
 	reset()
 
-func _process(delta: float) -> void:
-	#if can_upgrade and Input.is_action_just_pressed("u"):
-		#upgrade()
-		## NEED TO DEDUCT RESOURCES TOO
-	pass
-
 func setup(damage, cooldown, max_health, projectileScene):
 	self.damage = damage
 	self.cooldown = cooldown
@@ -51,7 +45,7 @@ func take_damage(amount):
 	health -= amount
 	if health <= 0:
 		queue_free()
-	print(health)
+	#print(health)
 
 func shoot(zombie):
 
@@ -97,7 +91,7 @@ func get_target():
 
 func upgrade():
 	damage += 5
-	cooldown *= 0.85
+	cooldown *= 0.75
 	level += 1
 	reset()
 

@@ -19,7 +19,7 @@ func _ready() -> void:
 func reset():
 	health = MAX_HEALTH
 	to_bunker()
-	update_health_bar(1)
+	update_health_bar(0.3)
 
 
 func _process(delta: float) -> void:
@@ -68,7 +68,7 @@ func take_damage(damage):
 	if health <= 0:
 		game_manager.respawn()
 	
-	update_health_bar(damage/5)
+	update_health_bar(damage/20)
 	#health_bar.value = health
 	#health_label.text = str(health)
 
